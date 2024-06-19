@@ -87,13 +87,13 @@ class KategoriController extends Controller
         if (!$kategori) {
             return response()->json(['status' => 'Kategori tidak ditemukan'], 404);
         }
-        
+
         try {
             $kategori->delete();
             return response()->json(['status' => 'Kategori berhasil dihapus'], 200);
-        } catch (\Illuminate\Database\QueryException) {
-            // Tangkap pengecualian spesifik dari database (termasuk constraints foreign key)
-            return response()->json(['status' => 'Kategori tidak dapat dihapus'], 500);
+        } catch (\Exception $e) {
+            // Tangkap pengecualian apapun
+            return response()->json(['status' => 'Kategori tidak dapat dihapus', 'error' => $e->getMessage()], 500);
         }
     }
 }
