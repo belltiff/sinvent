@@ -43,7 +43,14 @@ class KategoriController extends Controller
      */
     public function show(Kategori $kategori)
     {
-        //
+        $kategori = Kategori::find($id);
+
+        if(!$kategori){
+            return response()->json(['message' => 'Kategori tidak ditemukan'], 404);
+        }else{
+            $data=array("data"=>$kategori);
+            return response()->json($data);
+        }
     }
 
     /**
