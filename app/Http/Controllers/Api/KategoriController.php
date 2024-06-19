@@ -43,7 +43,7 @@ class KategoriController extends Controller
      */
     public function show(Kategori $kategori)
     {
-        $kategori = Kategori::find($id);
+        $kategori = Kategori::find($kategori);
 
         if(!$kategori){
             return response()->json(['message' => 'Kategori tidak ditemukan'], 404);
@@ -58,7 +58,7 @@ class KategoriController extends Controller
      */
     public function update(Request $request, Kategori $kategori)
     {
-        $kategori = Kategori::find($id);
+        $kategori = Kategori::find($kategori);
 
         $request->validate([
             'deskripsi'   => 'required',
@@ -82,7 +82,7 @@ class KategoriController extends Controller
      */
     public function destroy(Kategori $kategori)
     {
-        $kategori = Kategori::find($id);
+        $kategori = Kategori::find($kategori);
 
         if (!$kategori) {
             return response()->json(['status' => 'Kategori tidak ditemukan'], 404);
